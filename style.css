@@ -1,0 +1,17 @@
+#text {
+  font-size: 4em;
+  font-weight: bold;
+  color: #666666;
+  text-align: center;
+}
+#text_b {
+  font-size: 4rem;
+  font-weight: 500;
+  color: #666666;
+  text-align: center;
+}
+
+.add-blue {
+  color: #0000ff;
+  font-size: 0.5em;
+}
