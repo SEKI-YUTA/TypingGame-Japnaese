@@ -4,6 +4,7 @@ let textLists = [
   'This is my app',
 ];
 
+//  CSV読み込み-------------------------------
 const readElement = document.getElementById('read_csv');
 readElement.addEventListener('change', function(e) {
   var result = e.target.files[0];
@@ -18,7 +19,9 @@ readElement.addEventListener('change', function(e) {
     console.log('中身',textLists);
   })
 })
+//  -------------------------------------------------------------
 
+//  全角半角判定
 function CheckLength(str,flg) {
   for (var i = 0; i < str.length; i++) {
       var c = str.charCodeAt(i);
@@ -32,6 +35,7 @@ function CheckLength(str,flg) {
   }
   return false;
 }
+//  ----------------------------------------------------------------
 
 
 
@@ -41,6 +45,7 @@ let checkTexts = [];
 
 createText();
 
+//  問題表示--------------------------------------------------------
 function createText() {
   p.textContent = '';
   let rnd = Math.floor(Math.random() * textLists.length);
@@ -56,9 +61,11 @@ function createText() {
     return span;
   });
 }
+//  ------------------------------------------------------------
 
 console.log(checkTexts);
 
+//  正誤判定
 document.addEventListener('keydown', keyDown);
 
 function keyDown(e) {
