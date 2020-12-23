@@ -1,5 +1,7 @@
 let p = document.getElementById('text');
 let textb = document.getElementById('text_b');
+let typo = 0;
+let typing = 0;
 let textLists = [
   'This is my app',
 ];
@@ -8,6 +10,7 @@ let textLists = [
 const readElement = document.getElementById('read_csv');
 readElement.addEventListener('change', function(e) {
   var result = e.target.files[0];
+  console.log(result);
   var reader = new FileReader();
   reader.readAsText(result);
   reader.addEventListener('load', function() {
@@ -49,10 +52,12 @@ createText();
 function createText() {
   p.textContent = '';
   let rnd = Math.floor(Math.random() * textLists.length);
+  textb.innerText = textLists[rnd];
   if(CheckLength(textLists[rnd],1)) {
-    textb.innerText = textLists[rnd];
     textLists[rnd] = jaconv.toHebon(textLists[rnd]).toLowerCase();
     console.log(textLists[rnd]);
+  } else {
+    textb.innerText = "";
   }
   checkTexts = textLists[rnd].split('').map(function(value) {
     let span = document.createElement('span');
@@ -70,10 +75,15 @@ document.addEventListener('keydown', keyDown);
 
 function keyDown(e) {
   if (e.key === checkTexts[0].textContent) {
+    typing++;
     checkTexts[0].className = 'add-blue';
 
     checkTexts.shift();
 
-    if (!checkTexts.length) createText();
+    if (!checkTexts.length)  createText();
+  } else  if(e.key != 'Shift' ){
+    typo++;
   }
+  // console.log(e.key);
+  textb.innerText = "総タイピング数" + typing + "間違った数" + typo
 }
